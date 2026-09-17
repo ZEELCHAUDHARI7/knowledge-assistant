@@ -1,0 +1,20 @@
+[project]
+name = "knowledge-assistant"
+version = "0.1.0"
+description = "Local RAG chatbot that answers from your own documents, with sources and built-in evaluation"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "chromadb>=1.5.9",
+    "gradio>=6.27.0",
+    "langchain-chroma>=1.1.0",
+    "langchain-huggingface>=1.2.2",
+    "langchain-text-splitters>=1.1.2",
+    "openai>=3.14.1",
+    "pandas>=3.0.5",
+    "plotly>=7.1.0",
+    "pydantic>=2.13.5",
+    "pypdf>=6.19.0",
+    "python-docx>=1.2.0",
+    "scikit-learn>=1.9.1",
+    "sentence-transformers>=6.0.1",
+]

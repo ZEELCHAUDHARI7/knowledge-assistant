@@ -1,0 +1,20 @@
+# Python / uv
+.venv/
+__pycache__/
+*.pyc
+
+# Created by the scripts (rebuilt on every run)
+vector_db/
+vector_map.html
+eval_results.csv
+eval_summary.csv
+
+# Secrets and local settings
+.env
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+~$*

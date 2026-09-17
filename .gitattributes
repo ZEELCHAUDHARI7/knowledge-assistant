@@ -1,0 +1,6 @@
+# Store text files with Unix line endings (avoids CRLF warnings on Windows)
+* text=auto eol=lf
+
+# Binary documents
+*.pdf  binary
+*.docx binary

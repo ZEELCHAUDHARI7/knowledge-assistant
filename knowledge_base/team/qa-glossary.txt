@@ -1,0 +1,25 @@
+QA GLOSSARY: TaskTrail team
+
+Short explanations of terms used in our QA documents.
+
+RC (Release Candidate): the build that may be released if it passes testing. It is shared with QA on Tuesday of release week.
+
+S1 / S2 / S3 / S4: bug severity levels (Critical, High, Medium and Low). See the Bug Severity Guide.
+
+P0 / P1 / P2: test case priorities. P0 runs on every build, P1 on every release candidate, P2 once a month.
+
+Tier 1 device: a device we test on for every release (for example Samsung Galaxy S23 and iPhone 14).
+
+Flaky test: an automated test that fails 3 times in 10 runs without a real product bug.
+
+Quarantine: the group where flaky tests are moved so they do not block the pipeline.
+
+Go/No-Go: the Wednesday meeting that decides whether a release goes ahead.
+
+Hotfix: an urgent release that only contains fixes for Critical (S1) bugs.
+
+CaseBook: our test management tool, where all test cases and results are stored.
+
+Flag Console: the tool used to switch feature flags on and off. QA may only change flags on the QA environment.
+
+Smoke test: a quick check of the most important features: 45 test cases, about 2 hours.
