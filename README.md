@@ -4,6 +4,20 @@ A chatbot that answers questions about your own documents (**Markdown, PDF, Word
 
 > `knowledge_base/` contains a small example set of documents for a made-up mobile app team, so you can try the assistant straight away. All names, URLs and numbers in it are fictional. Replace it with your own files (see **Use your own documents**).
 
+## Screenshots
+
+**Chat:** answers come with their sources (including the PDF page), and questions outside the documents get "I don't know".
+
+![Chat with sources](docs/screenshots/chat.png)
+
+**Evaluation:** scores for 12 test questions, with a history of runs to compare settings.
+
+![Evaluation tab](docs/screenshots/evaluation.png)
+
+**Vector map:** every chunk as a dot; chunks from the same folder group together.
+
+![Vector map](docs/screenshots/vector-map.png)
+
 ## Features
 
 | Feature | Details |
@@ -63,6 +77,7 @@ knowledge-assistant/
 ├── app.py                  Gradio web app
 ├── evaluation/tests.jsonl  12 test questions with keywords and reference answers
 ├── evaluate.py             scores → eval_results.csv + eval_summary.csv
+├── docs/screenshots/       images used in this README
 └── pyproject.toml, uv.lock exact package versions
 ```
 
@@ -121,6 +136,17 @@ uv run evaluate.py --chunk-size 500      test smaller chunks (the default databa
 
 These thresholds are a rule of thumb for this project.
 
+### Sample results
+
+Measured on the 12 test questions with the example documents, llama3.2 on a laptop:
+
+| Setting | MRR | nDCG | Keyword coverage | Accuracy | Completeness | Relevance |
+|---|---|---|---|---|---|---|
+| 2 chunks per question | 0.875 | 0.886 | 91.7% | 4.33 | 3.50 | 4.83 |
+| 5 chunks per question (default) | **0.889** | **0.900** | **95.8%** | 4.25 | **3.92** | 4.75 |
+
+Retrieving 5 chunks finds more of the expected facts and gives more complete answers. Your numbers can differ slightly between runs, because the model's answers vary.
+
 **About the judge:** it is the same small local model (llama3.2), so it scores more generously than a large model would. Treat its scores as a rough signal. The retrieval metrics are exact calculations.
 
 ## Settings (`config.py`)
@@ -153,6 +179,7 @@ Everything stays on your computer, but check your company's policy before using 
 | Problem | Fix |
 |---|---|
 | 🔴 *Can't reach Ollama* | Start the Ollama app (or run `ollama serve`) |
+| `FileNotFoundError: Could not find module ... .dll` on Windows | The project folder path contains special characters (for example `→`). Move the project to a simple path such as `D:\Projects\knowledge-assistant`, delete the `.venv` folder and run `uv sync` again. |
 | *Ollama doesn't have the model* | `ollama pull llama3.2` |
 | `ingest.py` is stuck at *Loading the embedding model* | huggingface.co may be blocked, so use `EMBEDDING_PROVIDER = "ollama"` (see Settings) |
 | *The vector database is empty* | `uv run ingest.py` |
